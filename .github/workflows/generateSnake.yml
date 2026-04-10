@@ -13,5 +13,5 @@ jobs:
         with:
           github_user_name: ${{ github.repository_owner }}
           outputs: |
-            ./image/github-contribution-grid-snake.svg
-            ./image/github-contribution-grid-snake-dark.svg?palette=github-dark
+            ./img/github-contribution-grid-snake.svg
+            ./img/github-contribution-grid-snake-dark.svg?palette=github-dark
