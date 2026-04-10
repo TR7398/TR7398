@@ -12,6 +12,10 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
+    # 1 自分のリポジトリのファイルを修正できるようにする
+      - name: Checkout
+        uses: actions/checkout@v4
+    # 2 スネーク画像を生成する
       - name: generate_grid_snake
         uses: Platane/snk/svg-only@v3.4.1
         with:
@@ -21,3 +25,12 @@ jobs:
             ./snake_img/snake-dark.svg?palette=github-dark
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # 3 生成されたファイルをリポジトリに保存する
+      - name: Push snake.svg to the repository
+        uses: crazy-max/ghaction-github-pages@v4
+        with:
+          target_branch: output # 保存先のブランチ
+          build_dir: snake_img # 保存したいファイルが入っているフォルダ
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
